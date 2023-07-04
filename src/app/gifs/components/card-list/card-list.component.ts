@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Gif } from '../../Interfaces/gifs.interfaces';
 
 @Component({
@@ -6,7 +6,12 @@ import { Gif } from '../../Interfaces/gifs.interfaces';
   templateUrl: './card-list.component.html',
   styleUrls: ['./card-list.component.css'],
 })
-export class CardListComponent {
+export class CardListComponent implements OnInit {
   @Input()
-  public gifs: Gif[] = [];
+  public gif!: Gif;
+
+  /* Convierte a la propiedad gif en algo requerido  */
+  ngOnInit(): void {
+    if (!this.gif) throw new Error('Gif property is required');
+  }
 }
